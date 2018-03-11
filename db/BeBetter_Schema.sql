@@ -10,7 +10,7 @@ CREATE TABLE Users
     first_name varchar(40) NOT NULL,
     last_name varchar(40) NOT NULL,
     gender varchar(8),
-    PRIMARY KEY(User_id)
+    PRIMARY KEY(Userid)
 );
 
 CREATE TABLE UserGoals
