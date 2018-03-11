@@ -10,6 +10,7 @@ CREATE TABLE Users
     first_name varchar(40) NOT NULL,
     last_name varchar(40) NOT NULL,
     gender varchar(8),
+    pswd varchar(20) NOT NULL,
     PRIMARY KEY(Userid)
 );
 
