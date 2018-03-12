@@ -9,7 +9,8 @@ VALUES ('daily'), ('weekly'), ('monthly');
 
 INSERT INTO UserGoals (UserId, GoalDesc, FreqId, InputTypeId)
 VALUES (1, 'Drink 8 glasses of water', 1, 1), (3, 'Do 77 pushups', 1, 1), (1, 'Take contrast shower', 1, 2), 
-(2, 'Drink 88 glasses of water', 1, 1), (3, 'Take kids to park', 2, 2), (2, 'Run marathon', 3, 2);
+(2, 'Drink 88 glasses of water', 1, 1), (3, 'Take kids to park', 2, 2), (2, 'Run marathon', 3, 2),
+(1, 'Do yoga', 2, 2), (1, 'Commit to GitHub', 1, 2), (1, 'Call my friend', 3, 2);
 
 SELECT * FROM UserGoals;
 
