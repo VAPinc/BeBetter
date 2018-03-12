@@ -52,7 +52,7 @@ var orm = {
 
   //Insert a goal transaction 
   InsertGoalMet: function (GoalId, isMet, callback) {
-    var UpdateDate = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
+    var UpdateDate = moment(new Date()).format("YYYY-MM-DD");
     var QueryString = "INSERT INTO goaltransactions(fk_GoalId, UpdateDate, GoalMet, GoalQnty) VALUES(" + GoalId + ", " + UpdateDate + ", " + GoalMet + ");";
 
     connection.query(queryString, function (err, result) {
