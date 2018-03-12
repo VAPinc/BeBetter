@@ -1,8 +1,8 @@
 var orm = require('../config/orm.js');
 
 var bebetter = {
-  allGoals: function (UserId, date, cb) {
-    orm.selectAllGoals(UserId, date, function (res) {
+  allGoals: function (userId, date, cb) {
+    orm.selectAllGoals(userId, date, function (res) {
       cb(res);
     });
   },
@@ -13,33 +13,33 @@ var bebetter = {
     });
   },
 
-  createNewGoal: function (UserId, GoalDesc, IdFreq, IdType, cb) {
-    orm.insertNewGoal(UserId, GoalDesc, IdTypeId, IdFreq, function (res) {
+  createNewGoal: function (userId, goalDesc, idFreq, idType, cb) {
+    orm.insertNewGoal(userId, goalDesc, idType, idFreq, function (res) {
       cb(res);
     });
   },
  
-  deleteGoal: function (GoalId, cb) {
-    orm.deleteGoal(GoalId, function (res) {
+  deleteGoal: function (goalId, cb) {
+    orm.deleteGoal(goalId, function (res) {
       cb(res);
     });
   },
 
-  getStats: function (GoalId, cb) {
-    orm.getStats(GoalId, function () {
+  getStats: function (goalId, cb) {
+    orm.getStats(goalId, function () {
       cb(res);
     });
   },
 
-  postProgress: function (UserId, date, cb) {
-    orm.postProgress(UserId, date, function () {
+  postProgress: function (userId, date, cb) {
+    orm.postProgress(userId, date, function () {
       cb(res);
     });
   },
 };
 
- // updateGoal: function (Goalid, hasMet, cb) {
-  //   orm.InsertGoalMet(GoalId, hasMet, function (res) {
+ // updateGoal: function (goalid, hasMet, cb) {
+  //   orm.InsertGoalMet(goalId, hasMet, function (res) {
   //     cb(res);
   //   });
   // },
