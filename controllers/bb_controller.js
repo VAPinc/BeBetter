@@ -11,7 +11,7 @@ router.get('/:user_id/:date', function (req, res) {
 });
 
 //create new user
-router.post('/api/users/new', function(req, res) {
+router.post('/api/users/new', function (req, res) {
     let fName = req.body.fName;
     let lName = req.body.lName;
     let gender = req.body.gender;
