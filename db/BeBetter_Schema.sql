@@ -1,39 +1,39 @@
-DROP DATABASE IF EXISTS beBetter;
+DROP DATABASE IF EXISTS BeBetter;
 
-CREATE DATABASE beBetter;
+CREATE DATABASE BeBetter;
 
-USE beBetter;
+USE BeBetter;
 
 CREATE TABLE Users
 (
-	UserId INT NOT NULL,
-    first_name varchar(40) NOT NULL,
-    last_name varchar(40) NOT NULL,
-    gender varchar(8),
-    pswd varchar(20) NOT NULL,
-    PRIMARY KEY(Userid)
+	UserId INT NOT NULL AUTO_INCREMENT,
+    FirstName varchar(40) NOT NULL,
+    LastName varchar(40) NOT NULL,
+    Gender varchar(8),
+    Pswd varchar(20) NOT NULL,
+    PRIMARY KEY(UserId)
 );
 
 CREATE TABLE UserGoals
 (
-	GoalId INT NOT NULL,
-    fk_Userid INT NOT NULL,
-    Goal_Desc varchar(200) NOT NULL,
-    fk_FreqId INT NOT NULL,
-    fk_InputTypeId INT NOT NULL,
+	GoalId INT NOT NULL AUTO_INCREMENT,
+    UserId INT NOT NULL,
+    GoalDesc varchar(200) NOT NULL,
+    FreqId INT NOT NULL,
+    InputTypeId INT NOT NULL,
     PRIMARY KEY(GoalId)
 );
 
 CREATE TABLE InputTypeMstr
 (
-	InputID INT NOT NULL,
+	InputId INT NOT NULL AUTO_INCREMENT,
     InputTypeName varchar(10) NOT NULL,
     PRIMARY KEY(InputId)
 );
 
 CREATE TABLE GoalFreqMstr
 (
-	FreqId INT NOT NULL,
+	FreqId INT NOT NULL AUTO_INCREMENT,
     FreqName VARCHAR(20) NOT NULL,
     PRIMARY KEY (FreqId)
 );
@@ -41,9 +41,17 @@ CREATE TABLE GoalFreqMstr
 CREATE TABLE GoalTransactions
 (
 	TransId INT NOT NULL AUTO_INCREMENT,
-    fk_GoalId INT NOT NULL,
-    UpdateDate datetime NOT NULL,
-    GoalMet boolean NOT NULL,
+    GoalId INT NOT NULL,
+    UpdateDate DATE NOT NULL,
+    GoalMet BOOLEAN,
     GoalQnty INT,
     PRIMARY KEY(TransId)
 );
+
+ALTER TABLE UserGoals
+ADD CONSTRAINT FK_UserId FOREIGN KEY(UserId) REFERENCES Users(UserId),
+ADD CONSTRAINT FK_FreqId FOREIGN KEY(FreqId) REFERENCES GoalFreqMstr(freqId),
+ADD CONSTRAINT FK_InputTypeId FOREIGN KEY(InputTypeId) REFERENCES InputTypeMstr(InputId);
+
+ALTER TABLE GoalTransactions
+ADD CONSTRAINT FK_GoalId FOREIGN KEY(GoalId) REFERENCES UserGoals(GoalId);
