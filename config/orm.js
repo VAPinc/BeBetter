@@ -7,18 +7,18 @@ var orm = {
   //display all goals for a users
   selectAllGoals: function (userId, date, frequencyType, callback) {
     //var queryString = "SELECT * FROM " + tableInput + ";"; 	   
-    let dailyGoals =  '(f.FreqId = 1);';
+    let dailyGoals = '(f.FreqId = 1);';
     let weeklyGoals = '(f.FreqId = 1 OR f.FreqId = 2);';
     let monthlyGoals = '(f.FreqId = 1 OR f.FreqId = 2 OR f.FreqId = 3);';
 
-    if(frequencyType = 'monthly') {
+    if (frequencyType = 'monthly') {
       frequency = monthlyGoals;
     }
-    else if(frequencyType = 'weekly') {
+    else if (frequencyType = 'weekly') {
       frequency = weeklyGoals;
     }
     else {
-      frequency = dailyGoals; 
+      frequency = dailyGoals;
     }
     var queryString = 'SELECT g.GoalDesc, t.GoalMet, t.GoalQnty, i.InputTypeName, f.FreqName ' +
       'FROM  UserGoals AS g ' +
@@ -40,7 +40,7 @@ var orm = {
 
   insertNewUser: function (fName, lName, gender, pswd, callback) { //Gender is either f or m, all other fields are required
     var queryString = 'INSERT INTO Users (FirstName, LastName, Gender, Pswd) ' +
-    'VALUES (\'' + fName + '\', \'' + lName + '\', \'' + gender + '\', \'' + pswd + '\');';
+      'VALUES (\'' + fName + '\', \'' + lName + '\', \'' + gender + '\', \'' + pswd + '\');';
     connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
@@ -52,8 +52,8 @@ var orm = {
 
   //insert a goal for a user
   insertNewGoal: function (userId, goalText, freqId, typeId, callback) {
-    var queryString = 'INSERT INTO UserGoals (UserId, GoalDesc, FreqId, InputTypeId) ' + 
-    'VALUES(' + userId + ', \'' + goalText + '\', ' + freqId + ', ' + typeId + ');';
+    var queryString = 'INSERT INTO UserGoals (UserId, GoalDesc, FreqId, InputTypeId) ' +
+      'VALUES(' + userId + ', \'' + goalText + '\', ' + freqId + ', ' + typeId + ');';
     connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
@@ -73,12 +73,12 @@ var orm = {
     });
   },
 
-//provide progress for one habit for one user for whole period
-getStats: function (goalId, callback) {
+  //provide progress for one habit for one user for whole period
+  getStats: function (goalId, callback) {
     var queryString = 'SELECT * FROM GoalTransactions AS t, UserGoals AS g ' +
-    'WHERE t.GoalId = g.GoalId ' +
-    'AND g.GoalId =' + goalId + 
-    ' ORDER BY t.UpdateDate;';
+      'WHERE t.GoalId = g.GoalId ' +
+      'AND g.GoalId =' + goalId +
+      ' ORDER BY t.UpdateDate;';
     connection.query(queryString, function (err, result) {
       if (err) {
         throw err;
@@ -92,10 +92,10 @@ getStats: function (goalId, callback) {
     var updateDate = moment(date, "YYYY-MM-DD");
     let queryStringBool = "INSERT INTO GoalTransactions (GoalId, UpdateDate, GoalMet) VALUES(" + goalId + ", " + updateDate + ", " + boolGoal + ");";
     let queryStringNum = "INSERT INTO GoalTransactions (GoalId, UpdateDate, GoalQnty) VALUES(" + goalId + ", " + updateDate + ", " + numGoal + ");";
-    if(boolGoal){
+    if (boolGoal) {
       queryString = queryStringBool;
     }
-    else if(queryStringNum){
+    else if (queryStringNum) {
       queryString = queryStringNum;
     }
     connection.query(queryString, function (err, result) {
@@ -108,7 +108,7 @@ getStats: function (goalId, callback) {
 
   //display all Users for a users
   // selectAllUsers: function (callback) {
-    //var queryString = "SELECT * FROM " + tableInput + ";"; 	    	
+  //var queryString = "SELECT * FROM " + tableInput + ";"; 	    	
   //   var queryString = "Select users.UserId,users.first_name, users.last_name, users.gender FROM users;"
   //   connection.query(queryString, function (err, result) {
   //     if (err) {

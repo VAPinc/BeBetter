@@ -18,7 +18,7 @@ var bebetter = {
       cb(res);
     });
   },
- 
+
   deleteGoal: function (goalId, cb) {
     orm.deleteGoal(goalId, function (res) {
       cb(res);
@@ -38,17 +38,17 @@ var bebetter = {
   },
 };
 
- // updateGoal: function (goalid, hasMet, cb) {
-  //   orm.InsertGoalMet(goalId, hasMet, function (res) {
-  //     cb(res);
-  //   });
-  // },
+// updateGoal: function (goalid, hasMet, cb) {
+//   orm.InsertGoalMet(goalId, hasMet, function (res) {
+//     cb(res);
+//   });
+// },
 
 
 // allUsers: function(cb){
-  // 	orm.selectAllUsers(function(res) {
-  //   cb(res);
-  // });
-  // },
+// 	orm.selectAllUsers(function(res) {
+//   cb(res);
+// });
+// },
 
 module.exports = bebetter;
