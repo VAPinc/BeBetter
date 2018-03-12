@@ -1,12 +1,6 @@
 var orm = require('../config/orm.js');
 
 var bebetter = {
-  // allUsers: function(cb){
-  // 	orm.selectAllUsers(function(res) {
-  //   cb(res);
-  // });
-  // },
-
   allGoals: function (UserId, date, cb) {
     orm.selectAllGoals(UserId, date, function (res) {
       cb(res);
@@ -24,15 +18,9 @@ var bebetter = {
       cb(res);
     });
   },
-
-  // updateGoal: function (Goalid, hasMet, cb) {
-  //   orm.InsertGoalMet(GoalId, hasMet, function (res) {
-  //     cb(res);
-  //   });
-  // },
-
-  deleteGoal: function (Goalid, cb) {
-    orm.deleteGoal(GoalId, hasMet, function (res) {
+ 
+  deleteGoal: function (GoalId, cb) {
+    orm.deleteGoal(GoalId, function (res) {
       cb(res);
     });
   },
@@ -49,5 +37,18 @@ var bebetter = {
     });
   },
 };
+
+ // updateGoal: function (Goalid, hasMet, cb) {
+  //   orm.InsertGoalMet(GoalId, hasMet, function (res) {
+  //     cb(res);
+  //   });
+  // },
+
+
+// allUsers: function(cb){
+  // 	orm.selectAllUsers(function(res) {
+  //   cb(res);
+  // });
+  // },
 
 module.exports = bebetter;
