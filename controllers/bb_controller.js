@@ -15,6 +15,7 @@ router.post('/api/users/new', function (req, res) {
     let fName = req.body.fName;
     let lName = req.body.lName;
     let gender = req.body.gender;
+    let pswd = req.body.pswd;
     bebetter.createNewUser(fName, lName, gender, pswd, function (response) {
         res.render('index', data);
     });
