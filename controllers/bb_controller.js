@@ -1,11 +1,29 @@
 var express = require('express');
 var router = express.Router();
+var moment = require('moment');
+
 
 var bebetter = require('../models/bb_model.js')
+
+// get auth page
+router.get('/', function (req, res) {
+    bebetter.allUsers(function (data) {
+        console.log(data);
+        let date = moment().format('YYYYMMDD');
+        data.forEach(element => {
+            element.date = date;
+        });
+        // let hbsObj = {users: data} 
+        // console.log(users[0].FirstName);
+        res.render('login', {users: data, layout: 'auth.handlebars'});
+    });
+    
+});
 
 // get all habits for a user with date's progress
 router.get('/:user_id/:date', function (req, res) {
     bebetter.allGoals(req.params.user_id, req.params.date, function (data) {
+        console.log(data);
         res.render('index', data);
     });
 });
@@ -17,7 +35,8 @@ router.post('/api/users/new', function (req, res) {
     let gender = req.body.gender;
     let pswd = req.body.pswd;
     bebetter.createNewUser(fName, lName, gender, pswd, function (response) {
-        res.render('index', data);
+        console.log(response);
+        res.render('index', response);
     });
 });
 
@@ -42,8 +61,12 @@ router.delete("/api/habits/:habit_id", function (req, res) {
 
 //provide progress for one habit for one user for whole period
 router.get('/api/stats/:habit_id', function (req, res) {
+    console.log('in api/stats/:habit_id')
     bebetter.getStats(req.params.habit_id, function (response) {
-        res.render('index', data);
+        console.log(response)
+        res.render('index', {layout: 'main.handlebars'});
+
+        // res.render('index', response);
     });
 });
 
