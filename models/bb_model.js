@@ -1,6 +1,12 @@
 var orm = require('../config/orm.js');
 
 var bebetter = {
+  allUsers: function (cb) {
+    orm.getAllUsers(function (res) {
+      cb(res);
+    });
+  },
+
   allGoals: function (userId, date, cb) {
     orm.selectAllGoals(userId, date, function (res) {
       cb(res);
@@ -26,13 +32,13 @@ var bebetter = {
   },
 
   getStats: function (goalId, cb) {
-    orm.getStats(goalId, function () {
+    orm.getStats(goalId, function (res) {
       cb(res);
     });
   },
 
   postProgress: function (userId, date, cb) {
-    orm.postProgress(userId, date, function () {
+    orm.postProgress(userId, date, function (res) {
       cb(res);
     });
   },

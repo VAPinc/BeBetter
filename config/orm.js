@@ -1,25 +1,38 @@
-import { freemem } from 'os';
-
 var connection = require('./connection.js');
 var moment = require('moment');
 
 var orm = {
-  //display all goals for a users
-  selectAllGoals: function (userId, date, frequencyType, callback) {
-    //var queryString = "SELECT * FROM " + tableInput + ";"; 	   
-    let dailyGoals = '(f.FreqId = 1);';
-    let weeklyGoals = '(f.FreqId = 1 OR f.FreqId = 2);';
-    let monthlyGoals = '(f.FreqId = 1 OR f.FreqId = 2 OR f.FreqId = 3);';
+  getAllUsers: function(callback){
+    let queryString = 'SELECT * FROM users';
+    connection.query(queryString, function (err, result) {
+      if (err) {
+        throw err;
+      }
+      callback(result);
+    });
+  },
 
-    if (frequencyType = 'monthly') {
-      frequency = monthlyGoals;
-    }
-    else if (frequencyType = 'weekly') {
-      frequency = weeklyGoals;
-    }
-    else {
-      frequency = dailyGoals;
-    }
+  //display all goals for a users
+  selectAllGoals: function (userId, date, callback) {
+    //var queryString = "SELECT * FROM " + tableInput + ";"; 	 
+
+    //pass frequencyType to uncomment this:
+    // let dailyGoals = '(f.FreqId = 1);';
+    // let weeklyGoals = '(f.FreqId = 1 OR f.FreqId = 2);';
+    // let monthlyGoals = '(f.FreqId = 1 OR f.FreqId = 2 OR f.FreqId = 3);';
+
+    // if (frequencyType = 'monthly') {
+    //   frequency = monthlyGoals;
+    // }
+    // else if (frequencyType = 'weekly') {
+    //   frequency = weeklyGoals;
+    // }
+    // else {
+    //   frequency = dailyGoals;
+    // }
+
+    let frequency = '(f.FreqId = 1 OR f.FreqId = 2 OR f.FreqId = 3);';
+
     var queryString = 'SELECT g.GoalDesc, t.GoalMet, t.GoalQnty, i.InputTypeName, f.FreqName ' +
       'FROM  UserGoals AS g ' +
       'LEFT OUTER JOIN GoalTransactions AS t ON g.GoalId = t.GoalId ' +
@@ -34,7 +47,7 @@ var orm = {
       if (err) {
         throw err;
       }
-      cb(result);
+      callback(result);
     });
   },
 
@@ -83,7 +96,7 @@ var orm = {
       if (err) {
         throw err;
       }
-      cb(result);
+      callback(result);
     });
   },
 
