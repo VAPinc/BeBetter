@@ -33,15 +33,15 @@ var orm = {
 
     let frequency = '(f.FreqId = 1 OR f.FreqId = 2 OR f.FreqId = 3);';
 
-    var queryString = 'SELECT g.GoalDesc, t.GoalMet, t.GoalQnty, i.InputTypeName, f.FreqName ' +
+    var queryString = 'SELECT g.GoalId, g.GoalDesc, t.GoalMet, t.GoalQnty, i.InputTypeName, f.FreqName ' +
       'FROM  UserGoals AS g ' +
       'LEFT OUTER JOIN GoalTransactions AS t ON g.GoalId = t.GoalId ' +
+      ' AND t.UpdateDate = \'' + date + '\'' +
       'INNER JOIN Users AS u ON g.UserId = u.UserId ' +
       'INNER JOIN InputTypeMstr AS i ON g.InputTypeId = i.InputId ' +
       'INNER JOIN GoalFreqMstr AS f ON g.FreqId = f.FreqId ' +
       'WHERE u.UserId = ' + userId +
-      ' AND (t.UpdateDate = \'' + date + '\' OR t.UpdateDate is null ) ' +
-      'AND ' + frequency;
+      ' AND ' + frequency;
 
     connection.query(queryString, function (err, result) {
       if (err) {

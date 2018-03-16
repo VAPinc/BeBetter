@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var moment = require('moment');
 
-
 var bebetter = require('../models/bb_model.js')
 
 // get auth page
@@ -13,18 +12,45 @@ router.get('/', function (req, res) {
         data.forEach(element => {
             element.date = date;
         });
-        // let hbsObj = {users: data} 
-        // console.log(users[0].FirstName);
-        res.render('login', {users: data, layout: 'auth.handlebars'});
+        res.render('login', { users: data, layout: 'auth.handlebars' });
     });
-    
 });
 
 // get all habits for a user with date's progress
 router.get('/:user_id/:date', function (req, res) {
     bebetter.allGoals(req.params.user_id, req.params.date, function (data) {
         console.log(data);
-        res.render('index', data);
+        data.forEach(element => {
+            if (element.GoalMet != null) {
+                if (element.GoalMet == 1) {
+                    element.goalMetYes = true;
+                }
+                else {
+                    element.goalMetNo = true;
+                }
+            }
+            else if (element.GoalQnty != null) {
+                element.goalQntySet = true;
+            }
+            else if (element.InputTypeName == 'boolean') {
+                element.inputBool = true;
+            }
+            else if (element.InputTypeName == 'number') {
+                element.inputNum = true;
+            }
+
+            if(element.FreqName == 'daily'){
+                element.FreqNameD = true;
+            }
+            else if(element.FreqName == 'weekly'){
+                element.FreqNameW = true;
+            }
+            else if(element.FreqName == 'monthly'){
+                element.FreqNameM = true;
+            }
+        });
+        console.log(data);
+        res.render('index', { habits: data, layout: 'main.handlebars' });
     });
 });
 
@@ -64,7 +90,7 @@ router.get('/api/stats/:habit_id', function (req, res) {
     console.log('in api/stats/:habit_id')
     bebetter.getStats(req.params.habit_id, function (response) {
         console.log(response)
-        res.render('index', {layout: 'main.handlebars'});
+        res.render('index', { layout: 'main.handlebars' });
 
         // res.render('index', response);
     });

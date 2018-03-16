@@ -2,16 +2,27 @@
 <html lang='en'>
 <head>
   <meta charset='UTF-8'>
-    <link rel="stylesheet" href='../../public/css/style.css???' type='text/css' />
+    {{!-- <link rel="stylesheet" href='../../public/css/style.css???' type='text/css' /> --}}
     <title>Be Better!</title>
     <script src='public/js/bb.js'></script>
     <script src='https://code.jquery.com/jquery.js'></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="public/css/bebetter.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.min.css" rel="stylesheet"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
 
 </head>
+
   <body>
-    MAIN
     {{{ body }}}
   </body>
+  <script>
+  $(function () {
+    $(".dropdown-menu14 li a").click(function () {
+      $(".btn14:first-child").text($(this).text());
+      $(".btn14:first-child").val($(this).text());
+    });
+  });
+</script>
 </html>
