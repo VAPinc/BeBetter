@@ -19,6 +19,12 @@ var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+app.use(express.static('public'));
+
+// handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+//   return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+// });
+
 
 // Import routes and give the server access to them.
 var routes = require("./controllers/bb_controller.js");
