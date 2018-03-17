@@ -41,7 +41,7 @@
               {{else if inputBool}}
               <td>
                 <div class="dropdown {{GoalId}}">
-                  <button class="btn btn{{GoalId}} btn-default dropdown-toggle {{GoalId}}" data-goal-id={{GoalId}} type="button" id="dropdown{{GoalId}}" data-toggle="dropdown" aria-haspopup="true"
+                  <button class="btn btn{{GoalId}} btn-default dropdown-toggle {{GoalId}}" data-goal-id={{GoalId}} type="button" id="Goal_Value" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="true">
                     Completed?
                     <span class="caret"></span>
@@ -56,14 +56,16 @@
                   </ul>
                 </div>
               </td>
-              <script>
+             <!--  <script>
                 $(function () {
                   $(".dropdown-menu{{GoalId}} li a").click(function () {
+                    alert("received click");
+
                     $(".btn{{GoalId}}:first-child").text($(this).text());
                     $(".btn{{GoalId}}:first-child").val($(this).text());
                   });
                 });
-              </script>
+              </script> -->
               {{/if}} {{/if}} 
               <td>
                 <div>

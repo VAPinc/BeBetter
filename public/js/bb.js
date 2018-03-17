@@ -78,6 +78,34 @@ $(function () {
             });
     });
 
+//add progress for all habits for one user for one day - post '/api/:user_id/stats/:date'
+    $("#Goal_Value").on("click", function (event) {
+        // let habit_id = $(this).data("habit_id");
+        alert("Received click");
+        console.log("In add function");
+        let habit_id = $(this).data("data-goal-id");
+        console.log(habit_id);
+        let NewHabitVal = {
+            hasmet:$("#Goal_Value").val().trim(),
+            GoalId:habit_id
+        };
+        console.log(NewHabitVal);
+        // let newSleepState = {
+        //     sleepy: newSleep
+        // };
+
+        // // Send the PUT request.
+        // $.ajax("/api/cats/" + id, {
+        //     type: "PUT",
+        //     data: newSleepState
+        // }).then(
+        //     function () {
+        //         console.log("changed sleep to", newSleep);
+        //         // Reload the page to get the updated list
+        //         location.reload();
+        //     }
+        //     );
+    });
     //add progress for all habits for one user for one day - post '/api/:user_id/stats/:date'
     $("#delete").on("click", function (event) {
         let habit_id = $(this).data("habit_id");

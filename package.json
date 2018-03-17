@@ -25,6 +25,7 @@
     "express-handlebars": "^3.0.0",
     "moment": "^2.21.0",
     "mysql": "^2.15.0",
-    "nodemon": "^1.17.2"
+    "nodemon": "^1.17.2",
+    "path": "^0.12.7"
   }
 }
