@@ -11,6 +11,19 @@
             {{#each habits}}
             <tr>
               <td>{{GoalDesc}}</td>
+              {{#if FreqNameD}}
+              <td>
+                <img src="https://cdn4.iconfinder.com/data/icons/clock-and-time/32/24-hours-512.png" alt="Daily" width="50" height="50">
+              </td>
+              {{else if FreqNameW}}
+              <td>
+                <img src="https://cdn1.iconfinder.com/data/icons/office-22/48/calendar-512.png" alt="Weekly" width="50" height="50">
+              </td>
+              {{else if FreqNameM}}
+              <td>
+                <img src="https://image.flaticon.com/icons/png/512/34/34858.png" alt="Monthly" width="50" height="50">
+              </td>
+              {{/if}} 
               {{#if goalMetYes}}
               <td>
                 <img src="https://cliparts.zone/thu/473781.gif" alt="Daily" width="50" height="50">
@@ -28,34 +41,35 @@
               {{else if inputBool}}
               <td>
                 <div class="dropdown {{GoalId}}">
-                  <button class="btn btn{{GoalId}} btn-default dropdown-toggle {{GoalId}}" type="button" id="dropdown{{GoalId}}" data-toggle="dropdown" aria-haspopup="true"
+                  <button class="btn btn{{GoalId}} btn-default dropdown-toggle {{GoalId}}" data-goal-id={{GoalId}} type="button" id="dropdown{{GoalId}}" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="true">
                     Completed?
                     <span class="caret"></span>
                   </button>
-                  <ul class="dropdown-menu dropdown-menu{{GoalId}}" aria-labelledby="dropdown{{GoalId}}">
+                  <ul class="dropdown-menu dropdown-menu{{GoalId}}" data-goal-id={{GoalId}} aria-labelledby="dropdown{{GoalId}}">
                     <li>
-                      <a id='yes{{GoalId}}'>Yes</a>
+                      <a id='yes{{GoalId}}' data-goal-id={{GoalId}}>Yes</a>
                     </li>
                     <li>
-                      <a id="no{{GoalId}}">No</a>
+                      <a id="no{{GoalId}}" data-goal-id={{GoalId}}>No</a>
                     </li>
                   </ul>
                 </div>
               </td>
-              {{/if}} {{/if}} {{#if FreqNameD}}
+              <script>
+                $(function () {
+                  $(".dropdown-menu{{GoalId}} li a").click(function () {
+                    $(".btn{{GoalId}}:first-child").text($(this).text());
+                    $(".btn{{GoalId}}:first-child").val($(this).text());
+                  });
+                });
+              </script>
+              {{/if}} {{/if}} 
               <td>
-                <img src="https://cdn4.iconfinder.com/data/icons/clock-and-time/32/24-hours-512.png" alt="Daily" width="50" height="50">
+                <div>
+                  <button type="button" class="btn seeStats" data-goal-id={{GoalId}}>See stats</button>
+                </div>
               </td>
-              {{else if FreqNameW}}
-              <td>
-                <img src="https://cdn1.iconfinder.com/data/icons/office-22/48/calendar-512.png" alt="Weekly" width="50" height="50">
-              </td>
-              {{else if FreqNameM}}
-              <td>
-                <img src="https://image.flaticon.com/icons/png/512/34/34858.png" alt="Monthly" width="50" height="50">
-              </td>
-              {{/if}}
             </tr>
             {{/each}}
           </tbody>
@@ -64,6 +78,7 @@
     </div>
   </div>
 </div>
+<button type="button" class="btn update" data-goal-id={{GoalId}}>Update Habits</button>
 
 
 <h2>Add your goal</h2>
@@ -81,17 +96,15 @@
 
 
 
-{{!--
-<div class='form-group'>
-  <label for='habit'>Habit name:</label>
-  <input type='text' id='habit' name='name'>
-</div> --}}
-{{!-- 
-<script>
-  $(function () {
-    $(".dropdown-menu .14 li a").click(function () {
-      $(".btn:first-child").text($(this).text());
-      $(".btn:first-child").val($(this).text());
-    });
-  });
-</script> --}}
+ <script>
+  //$(function () {
+   // $(".dropdown-menu14 li a").click(function () {
+     // $(".btn14:first-child").text($(this).text());
+    //  $(".btn14:first-child").val($(this).text());
+   // });
+  //});
+ // $(document).on('click', '.dropdown', function(){
+  //  alert($('$(this).selected').text());
+
+ // })
+</script>
